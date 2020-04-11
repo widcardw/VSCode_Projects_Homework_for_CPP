@@ -11,16 +11,16 @@ private:
     int m_year, m_month, m_day;
 
 public:
-    CDate(int = 2000, int = 1, int = 1); //¹¹Ôìº¯Êı
-    CDate(const std::string &);          //¹¹Ôìº¯Êı
-    CDate(const char *);                 //¹¹Ôìº¯Êı
-    void set_date(int, int, int);        //ÉèÖÃÈÕÆÚ
-    int IsLeap() const;                  //³£³ÉÔ±º¯Êı:ÅĞ¶ÏÈòÄê
+    CDate(int = 2000, int = 1, int = 1); //æ„é€ å‡½æ•°
+    CDate(const std::string &);          //æ„é€ å‡½æ•°
+    CDate(const char *);                 //æ„é€ å‡½æ•°
+    void set_date(int, int, int);        //è®¾ç½®æ—¥æœŸ
+    int IsLeap() const;                  //å¸¸æˆå‘˜å‡½æ•°:åˆ¤æ–­é—°å¹´
     /*friend function*********************/
-    friend CDate operator+(CDate, int);    //¼Ó·¨
-    friend int operator-(CDate, CDate);    //ÈÕÆÚÏà¼õ·µ»ØÌìÊı
-    friend CDate &operator++(CDate &);     //Ç°×ÔÔö
-    friend CDate operator++(CDate &, int); //ºó×ÔÔö
+    friend CDate operator+(CDate, int);    //åŠ æ³•
+    friend int operator-(CDate, CDate);    //æ—¥æœŸç›¸å‡è¿”å›å¤©æ•°
+    friend CDate &operator++(CDate &);     //å‰è‡ªå¢
+    friend CDate operator++(CDate &, int); //åè‡ªå¢
     friend std::istream &operator>>(std::istream &, CDate &);
     friend std::ostream &operator<<(std::ostream &, const CDate &);
 };

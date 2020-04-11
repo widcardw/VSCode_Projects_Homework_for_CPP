@@ -10,30 +10,30 @@ CDateTime::CDateTime(int year, int month, int day, int hour, int minute, int sec
 CDateTime::CDateTime(const CDate &date, const CTime &time) : m_date(date), m_time(time)
 {
 }
-void CDateTime::set_date(int year, int month, int day) //设置日期函数
+void CDateTime::set_date(int year, int month, int day) //璁剧疆鏃ユ湡鍑芥暟
 {
     m_date.set_date(year, month, day);
 }
-void CDateTime::set_time(int hour, int minute, int second) //设置时间函数
+void CDateTime::set_time(int hour, int minute, int second) //璁剧疆鏃堕棿鍑芥暟
 {
     m_time.set_time(hour, minute, second);
 }
-void CDateTime::add_date(int days) //增加天数
+void CDateTime::add_date(int days) //澧炲姞澶╂暟
 {
     m_date = m_date + days;
 }
-void CDateTime::add_time(int seconds) //增加秒数
+void CDateTime::add_time(int seconds) //澧炲姞绉掓暟
 {
     m_time = m_time + seconds;
 }
 std::istream &operator>>(std::istream &in, CDateTime &date_time)
-//流提取运算符
+//娴佹彁鍙栬繍绠楃
 {
     in >> date_time.m_date >> date_time.m_time;
     return in;
 }
 std::ostream &operator<<(std::ostream &out, const CDateTime &date_time)
-//流插入运算符
+//娴佹彃鍏ヨ繍绠楃
 {
     out << date_time.m_date << ":" << date_time.m_time;
     return out;

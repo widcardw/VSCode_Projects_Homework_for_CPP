@@ -11,10 +11,10 @@ CDate::CDate(int year, int month, int day) : m_year(year), m_month(month), m_day
 CDate::CDate(const string &str)
 {
     int index = 0;
-    index = str.find("-", 0);               //ÕÒºáÏß
-    string str_temp = str.substr(0, index); //×Ó´®
-    m_year = atoi(str_temp.c_str());        //×ª³ÉcµÄstrÀàĞÍ
-    int index2 = str.find("-", index + 1);  //´ÓÉÏÒ»¸öµØ·½¿ªÊ¼ÕÒ
+    index = str.find("-", 0);               //æ‰¾æ¨ªçº¿
+    string str_temp = str.substr(0, index); //å­ä¸²
+    m_year = atoi(str_temp.c_str());        //è½¬æˆcçš„strç±»å‹
+    int index2 = str.find("-", index + 1);  //ä»ä¸Šä¸€ä¸ªåœ°æ–¹å¼€å§‹æ‰¾
     str_temp = str.substr(index + 1, index2 - index - 1);
     m_month = atoi(str_temp.c_str());
     str_temp = str.substr(index2 + 1, str.length() - index2);
@@ -51,45 +51,45 @@ inline bool IsLeap(int year)
 {
     return ((year % 400 == 0) || ((year % 4 == 0) && (year % 100 != 0)));
 }
-CDate operator+(CDate date, int num) //´ıÍêÉÆ
+CDate operator+(CDate date, int num) //å¾…å®Œå–„
 {
     date.m_day += num;
     while (date.m_day > month_days[date.m_month])
     {
-        if ((2 == date.m_month) && (date.IsLeap())) //ÈòÄê2ÔÂ
+        if ((2 == date.m_month) && (date.IsLeap())) //é—°å¹´2æœˆ
         {
-            if (date.m_day > month_days[date.m_month] + 1) //Èç¹û´óÓÚ29Ìì
+            if (date.m_day > month_days[date.m_month] + 1) //å¦‚æœå¤§äº29å¤©
             {
-                date.m_day -= month_days[date.m_month] + 1; //ÔÚÒÑ¾­¼ÓºÃµÄÌìÊıÉÏ¼õÈ¥29Ìì
-                ++date.m_month;                             //ÔÂ·İÊı¼Ó1
+                date.m_day -= month_days[date.m_month] + 1; //åœ¨å·²ç»åŠ å¥½çš„å¤©æ•°ä¸Šå‡å»29å¤©
+                ++date.m_month;                             //æœˆä»½æ•°åŠ 1
             }
             if (date.m_day == 29)
                 break;
         }
         else
         {
-            if (date.m_day > month_days[date.m_month]) //Èç¹û´óÓÚ¸ÃÔÂ·İµÄÌìÊı
+            if (date.m_day > month_days[date.m_month]) //å¦‚æœå¤§äºè¯¥æœˆä»½çš„å¤©æ•°
             {
-                date.m_day -= month_days[date.m_month]; //ÔÚÒÑ¾­¼ÓºÃµÄÌìÊıÉÏ¼õÈ¥¸ÃÔÂ·İÌìÊı
-                ++date.m_month;                         //ÔÂ·İÊı¼Ó1
+                date.m_day -= month_days[date.m_month]; //åœ¨å·²ç»åŠ å¥½çš„å¤©æ•°ä¸Šå‡å»è¯¥æœˆä»½å¤©æ•°
+                ++date.m_month;                         //æœˆä»½æ•°åŠ 1
             }
         }
-        if (date.m_month > 12) //Èç¹ûÔÂ·İÊı´óÓÚ12
+        if (date.m_month > 12) //å¦‚æœæœˆä»½æ•°å¤§äº12
         {
-            date.m_month -= 12; //ÔÂ·İÊı¼õÈ¥12
-            ++date.m_year;      //Äê·İÊı¼Ó1
+            date.m_month -= 12; //æœˆä»½æ•°å‡å»12
+            ++date.m_year;      //å¹´ä»½æ•°åŠ 1
         }
     }
     return date;
 }
 int operator-(CDate date1, CDate date2)
 {
-    //int sum_days = 0; //×ÜÌìÊı
-    int y_days = 0; //Ïà²î¶àÉÙÄê(ÕûÄêµÄÌìÊı)
-    int m_days = 0; //Ïà²î¶àÉÙÔÂ(ÕûÔÂµÄÌìÊı)
-    int flag = 0;   //flag == 0Ôòdate1>=date2·ñÔòdate1<date2
+    //int sum_days = 0; //æ€»å¤©æ•°
+    int y_days = 0; //ç›¸å·®å¤šå°‘å¹´(æ•´å¹´çš„å¤©æ•°)
+    int m_days = 0; //ç›¸å·®å¤šå°‘æœˆ(æ•´æœˆçš„å¤©æ•°)
+    int flag = 0;   //flag == 0åˆ™date1>=date2å¦åˆ™date1<date2
     CDate temp;
-    //ÅÅĞò±£Ö¤date1>=date2
+    //æ’åºä¿è¯date1>=date2
     if ((date1.m_year < date2.m_year) || (date1.m_month < date2.m_month) || (date1.m_day < date2.m_day))
     {
         temp = date1;
@@ -98,24 +98,24 @@ int operator-(CDate date1, CDate date2)
         flag = 1;
     }
     int i = date2.m_year + 1;
-    while (i < date1.m_year) //¼ÆËãÄê¼ä²îÌìÊı
+    while (i < date1.m_year) //è®¡ç®—å¹´é—´å·®å¤©æ•°
     {
         y_days += IsLeap(i) ? 366 : 365;
         ++i;
     }
-    int value1 = 0; //Ëã³ödate1ÔÚÕâÒ»Äê¹ıÁË¶àÉÙÌì
+    int value1 = 0; //ç®—å‡ºdate1åœ¨è¿™ä¸€å¹´è¿‡äº†å¤šå°‘å¤©
     for (i = 0; i < date1.m_month; ++i)
         value1 += month_days[i];
-    value1 += date1.m_day; //»ùÊı,²»¹ÜÊÇ²»ÊÇÈòÄê¶¼ÓĞ
-    if (date1.IsLeap())    //Èç¹ûÊÇÈòÄê,¶øÇÒËùÔÚÔÂ·İ´óÓÚ2ÔÂ,Ôò¼ÓÒ»Ìì
+    value1 += date1.m_day; //åŸºæ•°,ä¸ç®¡æ˜¯ä¸æ˜¯é—°å¹´éƒ½æœ‰
+    if (date1.IsLeap())    //å¦‚æœæ˜¯é—°å¹´,è€Œä¸”æ‰€åœ¨æœˆä»½å¤§äº2æœˆ,åˆ™åŠ ä¸€å¤©
         value1 += date1.m_month > 2 ? 1 : 0;
-    int value2 = 0; //Í¬Àí
+    int value2 = 0; //åŒç†
     for (i = 0; i < date2.m_month; ++i)
         value2 += month_days[i];
     value2 += date2.m_day;
     if (date2.IsLeap())
         value2 += date2.m_month > 2 ? 1 : 0;
-    //Èç¹ûÄê·İÏàÍ¬, ÔòÖ±½Ó½«Á½¸övalueÏà¼õ
+    //å¦‚æœå¹´ä»½ç›¸åŒ, åˆ™ç›´æ¥å°†ä¸¤ä¸ªvalueç›¸å‡
     if (date1.m_year == date2.m_year)
         m_days = value1 - value2;
     else
@@ -123,12 +123,12 @@ int operator-(CDate date1, CDate date2)
 
     return flag == 0 ? (y_days + m_days) : -(y_days + m_days);
 }
-CDate &operator++(CDate &date) //Ç°×ÔÔö
+CDate &operator++(CDate &date) //å‰è‡ªå¢
 {
     date = date + 1;
     return date;
 }
-CDate operator++(CDate &date, int) //ºó×ÔÔö
+CDate operator++(CDate &date, int) //åè‡ªå¢
 {
     CDate temp(date);
     date = date + 1;

@@ -8,7 +8,7 @@ CTime::CTime(int hour, int minute, int second) //: m_hour(hour), m_minute(minute
     m_minute = minute;
     m_second = second;
 }
-CTime::CTime(const string &str) //¹¹Ôìº¯Êý
+CTime::CTime(const string &str) //æž„é€ å‡½æ•°
 {
     int start_index;
     string str_temp;
@@ -54,17 +54,17 @@ CTime operator+(CTime time, int num)
             time.m_minute -= 60;
             ++time.m_hour;
         }
-    } //ÎÊÌâ:ÈçºÎ×öµ½Ð¡Ê±½øÎ»µ½Ìì
+    } //é—®é¢˜:å¦‚ä½•åšåˆ°å°æ—¶è¿›ä½åˆ°å¤©
     //time.m_hour %= 24;
     return time;
 }
-int operator-(CTime time1, CTime time2) //¼õ·¨
+int operator-(CTime time1, CTime time2) //å‡æ³•
 {
     int sum_second, hour_second, minute_second;
     int flag = 0; //0--time1>=time2;1--time1<time2
     CTime temp;
 
-    //ÏÈ±£Ö¤ tiem1>time2
+    //å…ˆä¿è¯ tiem1>time2
     if ((time1.m_hour < time2.m_hour) || ((time1.m_hour == time2.m_hour) && (time1.m_minute < time2.m_minute)) || ((time1.m_hour == time2.m_hour) && (time1.m_minute == time2.m_minute) && (time1.m_second < time2.m_second)))
     {
         temp = time1;
@@ -72,29 +72,29 @@ int operator-(CTime time1, CTime time2) //¼õ·¨
         time2 = temp;
         flag = 1;
     }
-    //¼ÆËãÐ¡Ê±µÄÃëÊý
+    //è®¡ç®—å°æ—¶çš„ç§’æ•°
     hour_second = (time1.m_hour - time2.m_hour - 1) * 3600;
     minute_second = (60 - time2.m_minute) * 60 + time1.m_minute * 60;
     sum_second = hour_second + minute_second - time2.m_second + time1.m_second;
     return flag == 0 ? sum_second : -sum_second;
 }
-CTime &operator++(CTime &time) //Ç°×ÔÔö
+CTime &operator++(CTime &time) //å‰è‡ªå¢ž
 {
     time = time + 1;
     return time;
 }
-CTime operator++(CTime &time, int) //ºó×ÔÔö
+CTime operator++(CTime &time, int) //åŽè‡ªå¢ž
 {
     CTime temp(time);
     time = time + 1;
     return temp;
 }
-std::istream &operator>>(std::istream &in, CTime &time) //Á÷ÌáÈ¡ÔËËã·û
+std::istream &operator>>(std::istream &in, CTime &time) //æµæå–è¿ç®—ç¬¦
 {
     in >> time.m_hour >> time.m_minute >> time.m_second;
     return in;
 }
-std::ostream &operator<<(std::ostream &out, const CTime &time) //Á÷²åÈëÔËËã·û
+std::ostream &operator<<(std::ostream &out, const CTime &time) //æµæ’å…¥è¿ç®—ç¬¦
 {
     out << time.m_hour << ":" << time.m_minute << ":" << time.m_second;
     return out;

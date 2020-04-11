@@ -13,10 +13,10 @@ public:
     CTime(const char *);
     void set_time(int, int, int);
     /*friend function*******************/
-    friend CTime operator+(CTime, int);    //¼Ó·¨
-    friend int operator-(CTime, CTime);    //¼õ·¨
-    friend CTime &operator++(CTime &);     //Ç°×ÔÔö
-    friend CTime operator++(CTime &, int); //ºó×ÔÔö
+    friend CTime operator+(CTime, int);    //åŠ æ³•
+    friend int operator-(CTime, CTime);    //å‡æ³•
+    friend CTime &operator++(CTime &);     //å‰è‡ªå¢ž
+    friend CTime operator++(CTime &, int); //åŽè‡ªå¢ž
     friend std::istream &operator>>(std::istream &, CTime &);
     friend std::ostream &operator<<(std::ostream &, const CTime &);
 };
