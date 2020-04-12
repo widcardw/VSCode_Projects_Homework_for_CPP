@@ -7,6 +7,7 @@ CTime::CTime(int hour, int minute, int second) //: m_hour(hour), m_minute(minute
     m_hour = hour;
     m_minute = minute;
     m_second = second;
+    temp_day = 0;
 }
 CTime::CTime(const string &str) //构造函数
 {

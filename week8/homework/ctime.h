@@ -5,7 +5,7 @@
 class CTime
 {
 private:
-    int m_hour, m_minute, m_second, temp_day = 0;
+    int m_hour, m_minute, m_second, temp_day;
 
 public:
     CTime(int = 0, int = 0, int = 0);
