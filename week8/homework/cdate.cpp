@@ -51,7 +51,7 @@ inline bool IsLeap(int year)
 {
     return ((year % 400 == 0) || ((year % 4 == 0) && (year % 100 != 0)));
 }
-CDate operator+(CDate date, int num) //待完善
+CDate operator+(CDate date, int num) //已完善
 {
     date.m_day += num;
     while (date.m_day > month_days[date.m_month])

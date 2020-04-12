@@ -5,13 +5,14 @@
 class CTime
 {
 private:
-    int m_hour, m_minute, m_second;
+    int m_hour, m_minute, m_second, temp_day = 0;
 
 public:
     CTime(int = 0, int = 0, int = 0);
     CTime(const std::string &);
     CTime(const char *);
     void set_time(int, int, int);
+    int rtn_tmp_day();
     /*friend function*******************/
     friend CTime operator+(CTime, int);    //加法
     friend int operator-(CTime, CTime);    //减法

@@ -10,7 +10,7 @@ int main()
     CDate date1, date2("2015-08-26");
     cout << "date1: " << date1 << endl;
     cout << "date2: " << date2 << endl;
-    CDate date3 = date1 + 52;
+    CDate date3 = date1 + 508;
     cout << "date3: " << date3 << endl;
     int num = date1 - date3;
     cout << "num: " << num << endl;
@@ -36,7 +36,7 @@ int main()
     cout << "datetime2: " << datetime2 << endl;
     datetime1.add_date(3);
     cout << "datetime1: " << datetime1 << endl;
-    datetime1.add_time(100000);
+    datetime1.add_time(1000000);
     cout << "datetime1: " << datetime1 << endl;
     datetime1.set_date(2010, 8, 27);
     cout << "datetime1: " << datetime1 << endl;

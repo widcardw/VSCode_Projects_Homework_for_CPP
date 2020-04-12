@@ -42,6 +42,10 @@ void CTime::set_time(int hour, int minute, int second)
     m_minute = minute;
     m_second = second;
 }
+int CTime::rtn_tmp_day()
+{
+    return temp_day;
+}
 CTime operator+(CTime time, int num)
 {
     time.m_second += num;
@@ -56,6 +60,11 @@ CTime operator+(CTime time, int num)
         }
     } //问题:如何做到小时进位到天
     //time.m_hour %= 24;
+    while (time.m_hour >= 24)
+    {
+        ++time.temp_day;
+        time.m_hour -= 24;
+    }
     return time;
 }
 int operator-(CTime time1, CTime time2) //减法
@@ -64,7 +73,7 @@ int operator-(CTime time1, CTime time2) //减法
     int flag = 0; //0--time1>=time2;1--time1<time2
     CTime temp;
 
-    //先保证 tiem1>time2
+    //先保证 time1>time2
     if ((time1.m_hour < time2.m_hour) || ((time1.m_hour == time2.m_hour) && (time1.m_minute < time2.m_minute)) || ((time1.m_hour == time2.m_hour) && (time1.m_minute == time2.m_minute) && (time1.m_second < time2.m_second)))
     {
         temp = time1;

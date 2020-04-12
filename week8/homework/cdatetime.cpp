@@ -25,6 +25,7 @@ void CDateTime::add_date(int days) //增加天数
 void CDateTime::add_time(int seconds) //增加秒数
 {
     m_time = m_time + seconds;
+    m_date = m_date + m_time.rtn_tmp_day();
 }
 std::istream &operator>>(std::istream &in, CDateTime &date_time)
 //流提取运算符
