@@ -1,0 +1,33 @@
+1、定义一个分数类Fraction，该类具有最简的分子和分母两个属性成员，试编写程序完成如下操作：
+(1)定义合适的构造函数。
+(2)定义前自增和后自增运算符重载函数，如1/3变成4/3。
+(3)定义前自减和后自减运算符重载函数，如1/3变成-2/3。
+(4)定义两个分数的加法运算符重载函数。
+(5)定义两个分数的减法运算符重载函数。
+(4)定义两个分数的乘法运算符重载函数。
+(5)定义两个分数的除法运算符重载函数。
+(6)定义两个分数的比较运算符重载函数。（> ,==,<）
+(7)定义流插入运算符重载函数，实现将分数显示在屏幕上。
+(8)定义流提取运算符重载函数，实现从键盘输入分数类对象的值。
+2、编写字符串类String的构造函数、析构函数和赋值函数。
+已知类String的原型和main函数为：
+class String
+{public:
+String(const char *str=””); 				//普通构造函数
+String(const String &other); 				//复制构造函数
+~String();									//析构函数
+String & operator=(const String &other);	//赋值函数
+void show()
+{cout<<m_data<<endl;}
+private:
+char *m_data; 								//用于保存字符串
+};
+void main()
+{
+ 	String str1("aa"),str2;
+ 	str1.show();
+ 	str2=str1;
+ 	str2.show();
+ 	String str3(str2);
+ 	str3.show();
+}
