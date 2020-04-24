@@ -1,4 +1,6 @@
 #include <iostream>
+#include "date.h"
+#include "course.h"
 #include "stu.h"
 using namespace std;
 Student::Student(string name, string id, Date birthdate, Course courses)
@@ -27,4 +29,18 @@ std::ostream &operator<<(std::ostream &out, Student &person)
 {
     out << person.name_ << " " << person.id_ << " " << person.birth_ << " " << person.course_;
     return out;
+}
+Student &Student::operator=(const Student &one)
+{
+    if (this == &one)
+        return *this;
+    name_ = one.name_;
+    id_ = one.id_;
+    birth_ = one.birth_;
+    course_ = one.course_;
+    return *this;
+}
+string Student::rtn_id()
+{
+    return id_;
 }

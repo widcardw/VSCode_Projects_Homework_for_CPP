@@ -1,7 +1,5 @@
 #ifndef _STU_H_
 #define _STU_H_
-#include "date.h"
-#include "course.h"
 class Student
 {
 private:
@@ -15,6 +13,8 @@ public:
     Student();
     ~Student();
     void print_stu();
+    Student &operator=(const Student &one);
+    string rtn_id();
     friend std::istream &operator>>(std::istream &, Student &);
     friend std::ostream &operator<<(std::ostream &, Student &);
 };
