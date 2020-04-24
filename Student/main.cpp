@@ -35,7 +35,7 @@ int main()
 
     while (1)
     {
-        cout << "====================\n|  1: add student  |\n|  2: read file    |\n|  3: find data    |\n|  4: delete data  |\n|  5: output data  |\n|  6: output file  |\n|  0: exit         |" << endl;
+        cout << "====================\n|  1: add student  |\n|  2: read file    |\n|  3: find data    |\n|  4: delete data  |\n|  5: print data   |\n|  6: output file  |\n|  0: exit         |" << endl;
         cout << "====================\nChoice: ";
         cin >> opt;
         switch (opt)
@@ -43,7 +43,7 @@ int main()
         case 1:
         {
             Student s;
-            cout << "name id birthdate course" << endl;
+            cout << "name;id;birthdate;term;course_name;teacher;score" << endl;
             cin >> s;
             QueuePush(&q, s);
             break;
