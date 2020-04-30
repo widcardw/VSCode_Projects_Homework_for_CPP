@@ -23,15 +23,18 @@ int main()
     ofstream fout;
     fout.open("dic.txt");
     string s, temp;
-
-    for (int j = 0; j < 110; ++j)
-    {
-        getline(fin, temp);
-        temp.erase(0, temp.find_first_of(' '));
-        s += temp;
-    }
     map<string, int> m;
-    f(s, m);
+    for (int k = 0; k < 10; ++k)
+    {
+        for (int j = 0; j < 100; ++j)
+        {
+            getline(fin, temp);
+            temp.erase(0, temp.find_first_of(' '));
+            s += temp;
+        }
+        f(s, m);
+        s.clear();
+    }
     /*for (auto i = m.begin(); i != m.end(); i++)
         cout << i->first << ":" << i->second << endl;*/
     for (auto i = m.begin(); i != m.end(); ++i)
