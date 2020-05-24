@@ -1,3 +1,8 @@
+/************************
+ * file: MultiWordCount.cpp
+ * 其中定义一个子函数完成对单个文本文件中汉字字频的统计，在主函数中调用成批文件处理函数以及具有汉字字频统计功能的子函数，
+ * 完成对text1、text2和text3三个文本文件的汉字字频统计，并把统计结果输出到“多个文件汉字字频统计结果.txt”的文件中。
+ * ***********************/
 #include <iostream>
 #include <string>
 #include <cstring>
@@ -57,7 +62,7 @@ int main()
         cerr << "Cannot open output file!" << endl;
         exit(-1);
     }
-    for (auto j = m.begin(); j != m.end(); ++j)
+    for (map<string, int>::iterator j = m.begin(); j != m.end(); ++j)
         out << j->first << ": " << j->second << endl;
     out.close();
     cout << "Successfully processed files!" << endl;

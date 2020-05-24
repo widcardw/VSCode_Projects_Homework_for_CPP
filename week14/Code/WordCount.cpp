@@ -1,3 +1,8 @@
+/***************************
+ * file: WordCount.cpp
+ * 该程序的主要功能为统计三个文件中任一文件中的汉字出现的频次(英文单词在此处被作为一个汉字进行统计)
+ * 并把统计结果输入到文件名为“单个文件汉字字频统计结果.txt”的文件中。
+ * ******************************/
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -64,7 +69,7 @@ int main()
         in.close();
         out << "text" << i << ".txt\n"
             << "\n";
-        for (auto j = m.begin(); j != m.end(); ++j)
+        for (map<string, int>::iterator j = m.begin(); j != m.end(); ++j)
         {
             out << j->first << ": " << j->second << endl;
         }

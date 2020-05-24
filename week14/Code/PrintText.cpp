@@ -1,3 +1,7 @@
+/******************************
+ * 读取text1、text2和text3三个文本文件中的内容，把上述三个文本文件中的内容输出到屏幕上。
+ * file: PrintText.cpp
+ * ******************************/
 #include <iostream>
 #include <fstream>
 #include <sstream>
