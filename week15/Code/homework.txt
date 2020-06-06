@@ -1,0 +1,21 @@
+图书管理系统
+
+(1)普通图书: 入库, 借书, 还书, 借书周期3个月, 报废处理
+(2)杂志管理: 入库, 借阅(不准借出图书馆)
+(3)特别书籍: 入库, 借阅(不准借出图书馆, 但可以复印)
+(4)人员: 图书管理员, 读者
+
+
+
+CBook--Common   borrow_out return period abandon
+     |-Magazine
+     |-Special  copy
+show
+store
+borrow
+
+
+Person--Librarian verify
+      |-Reader    borrow
+Login
+Logout
