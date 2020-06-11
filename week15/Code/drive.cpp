@@ -17,5 +17,6 @@ int main()
     Librarian LiHua = Librarian("LiHua", "13100105", 0, 10);
     LuRenJia.Borrow(CB_1);
     LuRenJia.Return(CB_1);
+    S_1.copy();
     return 0;
 }
