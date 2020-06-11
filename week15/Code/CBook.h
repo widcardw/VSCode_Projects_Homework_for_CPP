@@ -18,6 +18,8 @@ public:
     void backStore();
     void setLend();
     void setBack();
+    string rtn_title();
+    string rtn_isbn();
     //friend std::ostream operator<<(std::ostream &out, const CBook &book);
     //friend std::istream operator>>(std::istream &in, const CBook &book);
 };

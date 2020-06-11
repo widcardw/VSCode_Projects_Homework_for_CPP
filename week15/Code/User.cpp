@@ -19,6 +19,7 @@ void User::Borrow(CommonBook &book)
     {
         book.setLend();
         period_ = 1;
+        cout << id_ << ' ' << name_ << " borrowed " << book.rtn_isbn() << ' ' << book.rtn_title() << endl;
     }
     else
     {
@@ -33,7 +34,9 @@ void User::Return(CommonBook &book)
         cout << "You have missed the deadline of returning books!" << endl;
         credit_--;
         cout << "Your credit is " << credit_ << endl;
+        return;
     }
+    cout << id_ << ' ' << name_ << " returned " << book.rtn_isbn() << ' ' << book.rtn_title() << endl;
 }
 
 Reader::Reader(string name, string id, int day, int credit)

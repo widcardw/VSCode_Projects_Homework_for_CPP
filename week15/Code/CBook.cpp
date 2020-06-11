@@ -17,6 +17,14 @@ void CBook::show() const
     cout << Isbn_ << " " << bookTitle_ << " " << Author_ << " "
          << price_ << " isLend: " << isLend_ << endl;
 }
+string CBook::rtn_title()
+{
+    return bookTitle_;
+}
+string CBook::rtn_isbn()
+{
+    return Isbn_;
+}
 CBook::~CBook() {}
 /*std::ostream operator<<(std::ostream &out, const CBook &book)
 {
