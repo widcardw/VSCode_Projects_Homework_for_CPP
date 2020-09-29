@@ -5,10 +5,18 @@
 #include "LinkList.cpp"
 #include <algorithm>
 using namespace std;
-// void test();
-// void testMerge();
 void chooseScene();
-// void testLink();
+void gnrtRandLstFunc();
+void typeInLstFunc();
+void gnrtRandLinkListFunc();
+void inputLinkListFunc();
+
+int main()
+{
+    chooseScene();
+    return 0;
+}
+
 template <class T, int MaxSize>
 void gnrtRandLstFunc()
 {
@@ -117,72 +125,6 @@ void inputLinkListFunc()
     cout << "这是归并后的链表: " << endl;
     lst1.PrintLinkList();
 }
-int main()
-{
-    // test();
-    // testMerge();
-    chooseScene();
-    // testLink();
-    return 0;
-}
-// void testLink()
-// {
-//     const int len1 = 10;
-//     int a[len1] = {0}, i;
-//     for (i = 0; i < len1; ++i)
-//         a[i] = rand() % 100;
-//     LinkList<int> lst(a, len1);
-//     lst.Sort();
-//     cout << "这是第一个链表" << endl;
-//     lst.PrintLinkList();
-//     int b[len1] = {0};
-//     for (i = 0; i < len1; ++i)
-//         b[i] = rand() % 100;
-//     LinkList<int> lst2(b, len1);
-//     lst2.Sort();
-//     cout << "这是第二个链表" << endl;
-//     lst2.PrintLinkList();
-//     Merge(lst, lst2);
-//     cout << "这是归并后的链表" << endl;
-//     lst.PrintLinkList();
-// }
-// void test()
-// {
-//     const int num = 100;
-//     const int len = 50;
-//     int a[len] = {0};
-//     // for (int i = 0; i < len; ++i)
-//     //     cin >> a[i];
-//     for (int i = 0; i < len; ++i)
-//         a[i] = rand() % 100;
-//     SeqList<int, num> lst(a, len);
-//     lst.PrintSeqList();
-//     lst.Insert(2, 10);
-//     lst.PrintSeqList();
-//     lst.Delete(1);
-//     lst.PrintSeqList();
-//     lst.Sort();
-//     lst.PrintSeqList();
-// }
-// void testMerge()
-// {
-//     const int num = 100;
-//     const int len = 20;
-//     int a[len] = {0};
-//     for (int i = 0; i < len; ++i)
-//         a[i] = rand() % 100;
-//     SeqList<int, num> lst1(a, len);
-//     lst1.Sort();
-//     lst1.PrintSeqList();
-//     int b[len] = {0};
-//     for (int i = 0; i < len; ++i)
-//         b[i] = rand() % 100;
-//     SeqList<int, num> lst2(b, len);
-//     lst2.Sort();
-//     lst2.PrintSeqList();
-//     SeqList<int, num> lst3 = mergeTwoSortedList(lst1, lst2);
-//     lst3.PrintSeqList();
-// }
 void chooseScene()
 {
     const int MaxSize = 100;
