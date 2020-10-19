@@ -1,4 +1,4 @@
-#program once
+//#program once
 #ifndef _SEQSTACK_H
 #define _SEQSTACK_H
 template <class T, int MaxSize>
@@ -13,5 +13,5 @@ public:
     T Pop();
     T Top();
     bool Empty();
-}
+};
 #endif
