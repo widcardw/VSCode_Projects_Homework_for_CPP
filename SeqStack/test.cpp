@@ -101,7 +101,7 @@ double Expression_Eval()
     double num = 0;
     while (ch != '@' || OPTR.Top() != '@')
     {
-        if (ch == ' ')
+        while (ch == ' ')
             ch = getchar();
         num = 0;
         if (ch >= '0' && ch <= '9')
