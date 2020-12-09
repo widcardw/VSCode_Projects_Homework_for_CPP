@@ -18,6 +18,8 @@ void getNext(char *t, int next[])
             k = next[k];
     }
 }
+//  a   b   c   a   b   b   c
+//  -1  0   0   0   1   2   0ニャンコ先生
 int KMPMatching(char *s, char *t)
 {
     int i = 0, j = 0, n = strlen(s), m = strlen(t);
