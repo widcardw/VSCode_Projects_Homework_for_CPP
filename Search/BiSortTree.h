@@ -21,7 +21,7 @@ class BiSortTree
     void Delete(BiNode *&ptr, int k);
     void Free(BiNode *ptr);
     void InOrder(BiNode *p);
-    void SilentInOrder(BiNode *r, BiNode *p, int &count);
+    // void SilentInOrder(BiNode *r, BiNode *p, int &count);
 
 public:
     BiSortTree(int a[], int n);
