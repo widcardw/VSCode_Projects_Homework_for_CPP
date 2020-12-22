@@ -1,10 +1,11 @@
 #include "mgraph.h"
 #include "SeqQueue.h"
 #include <cmath>
+#include <string>
 #include <iomanip>
 
 template <class T>
-MGraph<T>::MGraph(GraphType t, T v[], int n, int e)
+MGraph<T>::MGraph(GraphType t, T v[], int n, int e, std::istream &in)
 {
     kind = t;
     switch (kind)
@@ -30,8 +31,8 @@ MGraph<T>::MGraph(GraphType t, T v[], int n, int e)
         for (i = 0; i < e; ++i)
         {
             std::cout << "Input va vb w: ";
-            std::cin >> va >> vb;
-            std::cin >> w;
+            in >> va >> vb;
+            in >> w;
             edges[va][vb] = w;
         }
     }
@@ -57,8 +58,8 @@ MGraph<T>::MGraph(GraphType t, T v[], int n, int e)
         for (i = 0; i < e; ++i)
         {
             std::cout << "Input va vb w: ";
-            std::cin >> va >> vb;
-            std::cin >> w;
+            in >> va >> vb;
+            in >> w;
             edges[va][vb] = edges[vb][va] = w;
         }
     }
@@ -84,7 +85,7 @@ MGraph<T>::MGraph(GraphType t, T v[], int n, int e)
         for (i = 0; i < e; ++i)
         {
             std::cout << "Input va vb: ";
-            std::cin >> va >> vb;
+            in >> va >> vb;
             edges[va][vb] = 1;
         }
     }
@@ -110,7 +111,7 @@ MGraph<T>::MGraph(GraphType t, T v[], int n, int e)
         for (i = 0; i < e; ++i)
         {
             std::cout << "Input va vb: ";
-            std::cin >> va >> vb;
+            in >> va >> vb;
             edges[va][vb] = edges[vb][va] = 1;
         }
     }
@@ -339,6 +340,31 @@ void MGraph<T>::TopoSort()
         }
     }
     if (c < vexnum)
-        std::cout << "これAOV网存在环!" << std::endl;
+        std::cout << "该AOV网存在环!" << std::endl;
     delete[] indegree;
+}
+template <class T>
+void PrintPath(MGraph<T> &g, int path[], float dist[], int v)
+{
+    int len = g.VexNum(), i, j;
+    // for (i = 0; i < len; ++i)
+    //     std::cout << std::setw(6) << path[i];
+    // std::cout << std::endl;
+    // for (i = 0; i < len; ++i)
+    //     std::cout << std::setw(6) << dist[i];
+    // std::cout << std::endl;
+    for (i = len - 1; i >= 0; --i)
+    {
+        j = i;
+        std::string ss;
+        ss = g.GetVexValue(j) + ss;
+        while (j != v && path[j] != -1)
+        {
+            std::ostringstream buffer;
+            buffer << g.GetVexValue(path[j]) << " --" << g.GetEdgeValue(path[j], j) << "-> ";
+            ss = buffer.str() + ss;
+            j = path[j];
+        }
+        std::cout << "Path length" << std::setw(3) << dist[i] << ": " << ss << std::endl;
+    }
 }

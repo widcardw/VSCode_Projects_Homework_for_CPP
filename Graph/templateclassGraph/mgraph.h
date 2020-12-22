@@ -53,7 +53,7 @@ private:
     int MiniNum(Edge<T> *miniedges);
 
 public:
-    MGraph(GraphType t, T v[], int n, int e);
+    MGraph(GraphType t, T v[], int n, int e, std::istream &in);
     ~MGraph();
     int VexNum();
     int EdgeNum();
@@ -72,4 +72,6 @@ public:
     void Dijkstra(int v, int path[], float dist[]);
     void TopoSort();
 };
+template <class T>
+void PrintPath(MGraph<T> &g, int path[], float dist[], int v);
 #endif

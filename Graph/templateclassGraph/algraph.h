@@ -54,7 +54,7 @@ private:
     // int MiniNum(Edge<T> *miniedges);
 
 public:
-    ALGraph(GraphType t, T vexs[], int n, int e);
+    ALGraph(GraphType t, T vexs[], int n, int e, std::istream &in);
     ~ALGraph();
     EdgeNode *FirstNode(int v);
     int VexNum();

@@ -6,7 +6,7 @@ void BiTree<T>::PreOrder(BiNode<T> *p)
 {
     if (p == NULL)
         return;
-    std::cout << p->data << std::endl;
+    std::cout << p->data;
     PreOrder(p->lchild);
     PreOrder(p->rchild);
 }
@@ -21,7 +21,7 @@ void BiTree<T>::InOrder(BiNode<T> *p)
     if (p == NULL)
         return;
     InOrder(p->lchild);
-    std::cout << p->data << std::endl;
+    std::cout << p->data;
     InOrder(p->rchild);
 }
 template <class T>
@@ -36,7 +36,7 @@ void BiTree<T>::PostOrder(BiNode<T> *p)
         return;
     PostOrder(p->lchild);
     PostOrder(p->rchild);
-    std::cout << p->data << std::endl;
+    std::cout << p->data;
 }
 template <class T>
 void BiTree<T>::PostOrder()
@@ -53,7 +53,7 @@ void BiTree<T>::LevelOrder()
     while (!Q.Empty())
     {
         BiNode<T> *p = Q.DeQueue();
-        std::cout << p->data << std::endl;
+        std::cout << p->data;
         if (p->lchild != NULL)
             Q.EnQueue(p->lchild);
         if (p->rchild != NULL)

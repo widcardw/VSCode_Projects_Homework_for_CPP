@@ -2,8 +2,9 @@
 // #include "SeqQueue.h"
 #include "SeqQueue.cpp"
 #include <iomanip>
+#include <fstream>
 template <class T>
-ALGraph<T>::ALGraph(GraphType t, T vexs[], int n, int e)
+ALGraph<T>::ALGraph(GraphType t, T vexs[], int n, int e, std::istream &in)
 {
     kind = t;
     switch (kind)
@@ -23,7 +24,7 @@ ALGraph<T>::ALGraph(GraphType t, T vexs[], int n, int e)
         for (j = 0; j < edgenum; ++j)
         {
             std::cout << "Input va vb: ";
-            std::cin >> va >> vb;
+            in >> va >> vb;
             p = new EdgeNode;
             p->adjvex = vb;
             p->weight = 1;
@@ -52,7 +53,7 @@ ALGraph<T>::ALGraph(GraphType t, T vexs[], int n, int e)
         for (j = 0; j < edgenum; ++j)
         {
             std::cout << "Input va vb: ";
-            std::cin >> va >> vb;
+            in >> va >> vb;
             p = new EdgeNode;
             p->adjvex = vb;
             p->weight = 1;
@@ -76,7 +77,7 @@ ALGraph<T>::ALGraph(GraphType t, T vexs[], int n, int e)
         for (j = 0; j < edgenum; ++j)
         {
             std::cout << "Input va vb w: ";
-            std::cin >> va >> vb >> w;
+            in >> va >> vb >> w;
             p = new EdgeNode;
             p->adjvex = vb;
             p->weight = w;
@@ -105,7 +106,7 @@ ALGraph<T>::ALGraph(GraphType t, T vexs[], int n, int e)
         for (j = 0; j < edgenum; ++j)
         {
             std::cout << "Input va vb w: ";
-            std::cin >> va >> vb >> w;
+            in >> va >> vb >> w;
             p = new EdgeNode;
             p->adjvex = vb;
             p->weight = w;
