@@ -98,6 +98,18 @@ void finInput()
 }
 int main()
 {
-    finInput();
+    int sw;
+    std::cout << "1: cin\n2: fin\nchoose: ";
+    std::cin >> sw;
+    switch (sw)
+    {
+    case 1:
+        cinInput();
+        break;
+    case 2:
+        finInput();
+        break;
+    }
+    // finInput();
     return 0;
 }
