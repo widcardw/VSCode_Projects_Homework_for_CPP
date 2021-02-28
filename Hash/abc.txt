@@ -1,0 +1,2 @@
+static do  aaa
+for if
