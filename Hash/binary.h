@@ -24,6 +24,7 @@ class BinMap{
 	};
 public:
     BinMap();
+    int GetSearchLength(char *word);
     bool isKeyWord(char *word);
     bool isLetter(char ch);
     int BinarySearch(char *word);

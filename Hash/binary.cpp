@@ -10,6 +10,8 @@ BinMap::BinMap()
     {
         binlist[i].keynum = binlist[i].searchtimes = 0;
         strcpy(binlist[i].keyword, KeyWords[i]);
+        int len = GetSearchLength(KeyWords[i]);
+        binlist[i].searchtimes = len;
     }
 }
 
@@ -35,6 +37,30 @@ bool BinMap::isKeyWord(char *word)
     return false;
 }
 
+int BinMap::GetSearchLength(char *word)
+{
+    int low = 0, mid, high = 31;
+    int st = 0, sign = 0;
+    while (low <= high)
+    {
+        mid = (low + high) / 2;
+        sign = strcmp(word, KeyWords[mid]);
+        if (sign == 0)
+        {
+            st++; return st;
+        }
+        else if (sign > 0)
+        {
+            low = mid + 1; st++;
+        }
+        else 
+        {
+            high = mid - 1; st++;
+        }
+    }
+    return -1;
+}
+
 int BinMap::BinarySearch(char *word)
 {
     int low = 0, high = 31, mid;
@@ -46,17 +72,19 @@ int BinMap::BinarySearch(char *word)
         if (sign == 0) 
         {
             binlist[mid].keynum++;
-            st++;
-            binlist[mid].searchtimes = st;
+            // st++;
+            // binlist[mid].searchtimes = st;
             return mid;
         }
         else if (sign > 0)
         {
-            low = mid + 1; st++;
+            low = mid + 1; 
+            // st++;
         }
         else
         {
-            high = mid - 1; st++;
+            high = mid - 1; 
+            // st++;
         }
     }
     return -1;
@@ -103,8 +131,8 @@ void BinMap::CreateMapFromFile(FILE* in)
             }
         }
         word[i] = '\0';
-        if (isKeyWord(word))
-            BinarySearch(word);
+        // if (isKeyWord(word))
+        BinarySearch(word);
     }
 }
 
