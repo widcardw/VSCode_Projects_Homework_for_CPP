@@ -5,11 +5,12 @@
 #include <cstring>
 #include <cassert>
 #include <cstdio>
+#include <string>
 
-void testHash()
+void testHash(std::string filename)
 {
     FILE *fin;
-    fin = fopen("aviobuf.c", "r");
+    fin = fopen(filename.data(), "r");
     assert(fin);
     HashMap hlist;
     hlist.CreateHashMapFromFile(fin);
@@ -18,10 +19,10 @@ void testHash()
     fclose(fin);
 }
 
-void testBin()
+void testBin(std::string filename)
 {
     FILE *fin;
-    fin = fopen("aviobuf.c", "r");
+    fin = fopen(filename.data(), "r");
     assert(fin);
     BinMap blist;
     blist.CreateMapFromFile(fin);
@@ -32,9 +33,23 @@ void testBin()
 
 int main()
 {
-    std::cout << "Hash查找: " << std::endl;
-    testHash();
-    std::cout << "\n二分查找" << std::endl;
-    testBin();
+    std::string filename;
+    int choice = 0;
+    while(1) {
+        std::cout << "请输入要查询的文件名：";
+        std::cin >> filename;
+        std::cout << "请输入你的选项：\n1.hash查找&二分查找\n2.退出\n请选择：";
+        std::cin >> choice;
+        switch(choice) {
+            case 1:
+                std::cout << "Hash查找: " << std::endl;
+                testHash(filename);
+                std::cout << "\n二分查找" << std::endl;
+                testBin(filename);
+                break;
+            default:
+                exit(0);
+        }
+    }
     return 0;
 }

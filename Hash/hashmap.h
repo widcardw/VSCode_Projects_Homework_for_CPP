@@ -14,13 +14,13 @@ struct HashStruct {
 
 class HashMap{
     HashStruct hashlist[41];
-    char KeyWords[32][10] = {
-		"auto","break","case","char","const","continue",
-		"default","do","double","else","enum","extern",
-		"float","for","goto","if","int","long","register",
-		"return","short","signed","sizeof","static",
-		"struct","switch","typedef","union","unsigned",
-		"void","volatile","while",
+    char KeyWords[37][10] = {
+		"auto","bool","break","case","char","const","continue",
+        "default","do","double","else","enum","extern", "false",
+        "float","for","goto","if","inline","int","long","register","restrict",
+        "return","short","signed","sizeof","static",
+        "struct","switch","true","typedef","union","unsigned",
+        "void","volatile","while"
 	};
 public:
     HashMap();                    // 初始化

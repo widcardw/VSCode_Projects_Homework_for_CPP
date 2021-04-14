@@ -23,7 +23,7 @@ bool HashMap::isLetter(char ch)
 
 bool HashMap::isKeyWord(char *word)
 {
-    for (int i = 0; i < 32; ++i)
+    for (int i = 0; i < 37; ++i)
         if (strcmp(word, KeyWords[i]) == 0)
             return true;
     return false;

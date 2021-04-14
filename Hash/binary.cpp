@@ -6,7 +6,7 @@
 
 BinMap::BinMap()
 {
-    for (int i = 0; i < 32; ++i)
+    for (int i = 0; i < 37; ++i)
     {
         binlist[i].keynum = binlist[i].searchtimes = 0;
         strcpy(binlist[i].keyword, KeyWords[i]);
@@ -24,7 +24,7 @@ bool BinMap::isLetter(char ch)
 
 bool BinMap::isKeyWord(char *word)
 {
-    int low = 0, mid, high = 31;
+    int low = 0, mid, high = 36;
     int sign = 0;
     while (low <= high)
     {
@@ -39,7 +39,7 @@ bool BinMap::isKeyWord(char *word)
 
 int BinMap::GetSearchLength(char *word)
 {
-    int low = 0, mid, high = 31;
+    int low = 0, mid, high = 36;
     int st = 0, sign = 0;
     while (low <= high)
     {
@@ -63,7 +63,7 @@ int BinMap::GetSearchLength(char *word)
 
 int BinMap::BinarySearch(char *word)
 {
-    int low = 0, high = 31, mid;
+    int low = 0, high = 36, mid;
     int st = 0, sign = 0;
     while (low <= high)
     {
@@ -97,7 +97,7 @@ void BinMap::PrintList(std::ostream& out)
         << std::setw(8) << "search"
         << std::setw(8) << "num"
         << std::endl;
-    for (int i = 0; i < 32; ++i)
+    for (int i = 0; i < 37; ++i)
     {
         out << std::setw(3) << i 
             << std::setw(10) << binlist[i].keyword
@@ -139,7 +139,7 @@ void BinMap::CreateMapFromFile(FILE* in)
 int BinMap::CalSearchLen()
 {
     int sum = 0;
-    for (int i = 0; i < 32; ++i)
+    for (int i = 0; i < 37; ++i)
     {
         sum += binlist[i].keynum * binlist[i].searchtimes;
     }
