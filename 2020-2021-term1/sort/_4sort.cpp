@@ -171,7 +171,7 @@ void execShellSort(int n, std::ifstream& fin, std::ofstream& fout)
     if (!fin) 
     {
         std::cerr << "Cannot open the file!";
-        exit(-1);
+        return;
     }
     int arr[10000] = {0}, i = 0;
     while (fin >> arr[i++]) ;
@@ -181,7 +181,7 @@ void execShellSort(int n, std::ifstream& fin, std::ofstream& fout)
     if (!fout)
     {
         std::cerr << "Cannot open file!";
-        exit(-1);
+        return;
     }
     for (i = 0; i < n; ++i)
     {
@@ -199,7 +199,7 @@ void execQuickSort(int n, std::ifstream& fin, std::ofstream& fout)
     if (!fin) 
     {
         std::cerr << "Cannot open the file!";
-        exit(-1);
+        return;
     }
     int arr[10000] = {0}, i = 0;
     while (fin >> arr[i++]) ;
@@ -209,7 +209,7 @@ void execQuickSort(int n, std::ifstream& fin, std::ofstream& fout)
     if (!fout)
     {
         std::cerr << "Cannot open file!";
-        exit(-1);
+        return;
     }
     for (i = 0; i < n; ++i)
     {
@@ -227,7 +227,7 @@ void execHeapSort(int n, std::ifstream& fin, std::ofstream& fout)
     if (!fin) 
     {
         std::cerr << "Cannot open the file!";
-        exit(-1);
+        return;
     }
     int arr[10000] = {0}, i = 0;
     while (fin >> arr[i++]) ;
@@ -237,7 +237,7 @@ void execHeapSort(int n, std::ifstream& fin, std::ofstream& fout)
     if (!fout)
     {
         std::cerr << "Cannot open file!";
-        exit(-1);
+        return;
     }
     for (i = 0; i < n; ++i)
     {
@@ -255,7 +255,7 @@ void execMergeSort(int n, std::ifstream& fin, std::ofstream& fout)
     if (!fin) 
     {
         std::cerr << "Cannot open the file!";
-        exit(-1);
+        return;
     }
     int arr[10000] = {0}, i = 0;
     int arr2[10000], arr3[10000];
@@ -266,7 +266,7 @@ void execMergeSort(int n, std::ifstream& fin, std::ofstream& fout)
     if (!fout)
     {
         std::cerr << "Cannot open file!";
-        exit(-1);
+        return;
     }
     for (i = 0; i < n; ++i)
     {

@@ -1,0 +1,7 @@
+char str[] = "?????????????$";
+int main()
+{
+    int count = 0;
+    while (str[count] != '$') count ++;
+    return count;
+}
