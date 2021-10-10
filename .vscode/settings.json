@@ -51,6 +51,10 @@
         "xtr1common": "cpp",
         "xutility": "cpp",
         "bit": "cpp",
-        "clocale": "cpp"
+        "clocale": "cpp",
+        "list": "cpp",
+        "xhash": "cpp",
+        "xtree": "cpp",
+        "map": "cpp"
     }
 }
