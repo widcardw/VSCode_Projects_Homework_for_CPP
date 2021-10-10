@@ -5,11 +5,13 @@
 #include <stack>
 #include <iomanip>
 #include <algorithm>
+#include <unordered_map>
 using namespace std;
 
 const int DIR[4] = {-1, -4, 4, 1};
 int dx[4] = {0, -1, 1, 0}, dy[4] = {-1, 0, 0, 1};
 const int LEN = 16;
+unordered_map<int, char> m;
 
 class Status
 {
@@ -77,15 +79,32 @@ int evaluateDistance(const vector<int> &dest, const vector<int> &arr)
     return count;
 }
 
-void PrintSteps(vector<Status> &Closed)
+void getAnswer(vector<Status> &Closed, stack<Status>& res)
 {
     int parent = Closed.size();
-    stack<Status> res;
     while (parent != 0)
     {
         res.push(Closed[parent - 1]);
         parent = Closed[parent - 1].Parent;
     }
+}
+
+void PrintOptions(vector<Status> &Closed)
+{
+    stack<Status> res;
+    getAnswer(Closed, res);
+    while (!res.empty())
+    {
+        cout << m[res.top().Option];
+        res.pop();
+    }
+    cout << endl;
+}
+
+void PrintSteps(vector<Status> &Closed)
+{
+    stack<Status> res;
+    getAnswer(Closed, res);
     while (!res.empty())
     {
         res.top().print_map();
@@ -102,7 +121,7 @@ int findZero(const vector<int> &arr)
     return -1;
 }
 
-bool matchNode(const Status &n, Status &close)
+bool exactlyMatchNode(const Status &n, Status &close)
 {
     for (int i = 0; i < LEN; i++)
         if (n.Data[i] != close.Data[i])
@@ -110,12 +129,12 @@ bool matchNode(const Status &n, Status &close)
     return true;
 }
 
-bool hasNode(const Status &n, vector<Status> &Closed)
+int nodeIndex(const Status &n, vector<Status> &v)
 {
-    for (int i = 0; i < Closed.size(); i++)
-        if (matchNode(n, Closed[i]))
-            return true;
-    return false;
+    for (int i = 0; i < v.size(); i++)
+        if (exactlyMatchNode(n, v[i]))
+            return i;
+    return -1;
 }
 
 void insertNode(vector<Status> &Open, const Status &n)
@@ -138,16 +157,39 @@ void ExtendNode(vector<Status> &Closed, vector<Status> &Open,
         if (nrow >= 0 && nrow < 4 && ncol >= 0 && ncol < 4)
         {
             int zero_new = nrow * 4 + ncol;
+
+            // construct new Status n
             Status n = Status(tmp.Data, parent, DIR[i], tmp.Step + 1, 0);
             swap(n.Data[zero_index], n.Data[zero_new]);
             n.Value = n.Step + evaluateDistance(dest, n);
-            if (!hasNode(n, Closed) && !hasNode(n, Open))
+
+            // find the index of Status in Open and Closed
+            int inOpen = nodeIndex(n, Open), inClosed = nodeIndex(n, Closed);
+            // if not found, then insert the Status into Open
+            if (inOpen == -1 && inClosed == -1)
                 insertNode(Open, n);
+            // found in Open, then compare the values and change the parent node
+            else if (inOpen != -1)
+            {
+                if (n.Value < Open[inOpen].Value)
+                {
+                    Open[inOpen].Value = n.Value;
+                    Open[inOpen].Parent = n.Parent;
+                }
+            }
+            // found in Closed, then compare the values and move back into Open
+            else if (inClosed != -1)
+            {
+                if (n.Value < Closed[inClosed].Value)
+                {
+                    insertNode(Open, n);
+                }
+            }
         }
     }
 }
 
-void Solve(const vector<int> &dest, const vector<int> &src)
+void Solve(const vector<int> &dest, const vector<int> &src, void (*optionFunc)(vector<Status>&))
 {
     vector<Status> Open;
     vector<Status> Closed;
@@ -162,7 +204,7 @@ void Solve(const vector<int> &dest, const vector<int> &src)
 
         if (isDestNode(dest, tmp))
         {
-            PrintSteps(Closed);
+            (*optionFunc)(Closed);
             return;
         }
         Status n[4];
@@ -171,10 +213,19 @@ void Solve(const vector<int> &dest, const vector<int> &src)
     }
 }
 
+void init_map()
+{
+    m[-1] = 'L';
+    m[-4] = 'U';
+    m[4] = 'D';
+    m[1] = 'R';
+}
+
 int main()
 {
+    init_map();
     vector<int> src = {1, 2, 3, 4, 5, 6, 7, 8, 11, 9, 10, 12, 0, 13, 14, 15};
     vector<int> dest = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 0};
-    Solve(dest, src);
+    Solve(dest, src, PrintSteps);
     return 0;
 }

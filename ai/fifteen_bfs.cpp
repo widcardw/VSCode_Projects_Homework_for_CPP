@@ -5,11 +5,13 @@
 #include <stack>
 #include <iomanip>
 #include <algorithm>
+#include <unordered_map>
 using namespace std;
 
 int dx[4] = {0, -1, 1, 0}, dy[4] = {-1, 0, 0, 1};
 const int DIR[4] = {-1, -4, 4, 1};
 const int LEN = 16;
+unordered_map<int, char> m;
 
 class Status
 {
@@ -65,15 +67,32 @@ bool isDestNode(const vector<int> &dest, const Status &tmp)
     return true;
 }
 
-void PrintSteps(vector<Status> &Closed)
+void getAnswer(vector<Status> &Closed, stack<Status>& res)
 {
     int parent = Closed.size();
-    stack<Status> res;
     while (parent != 0)
     {
         res.push(Closed[parent - 1]);
         parent = Closed[parent - 1].Parent;
     }
+}
+
+void PrintOptions(vector<Status> &Closed)
+{
+    stack<Status> res;
+    getAnswer(Closed, res);
+    while (!res.empty())
+    {
+        cout << m[res.top().Option];
+        res.pop();
+    }
+    cout << endl;
+}
+
+void PrintSteps(vector<Status> &Closed)
+{
+    stack<Status> res;
+    getAnswer(Closed, res);
     while (!res.empty())
     {
         res.top().print_map();
@@ -109,7 +128,7 @@ void ExtendNode(vector<Status> &Closed, vector<Status> &Open,
     }
 }
 
-void Solve(const vector<int> &dest, const vector<int> &src)
+void Solve(const vector<int> &dest, const vector<int> &src, void (*optionFunc)(vector<Status>&))
 {
     vector<Status> Open;
     vector<Status> Closed;
@@ -124,7 +143,7 @@ void Solve(const vector<int> &dest, const vector<int> &src)
 
         if (isDestNode(dest, tmp))
         {
-            PrintSteps(Closed);
+            (*optionFunc)(Closed);
             return;
         }
         Status n[4];
@@ -133,10 +152,19 @@ void Solve(const vector<int> &dest, const vector<int> &src)
     }
 }
 
+void init_map()
+{
+    m[-1] = 'L';
+    m[-4] = 'U';
+    m[4] = 'D';
+    m[1] = 'R';
+}
+
 int main()
 {
+    init_map();
     vector<int> src = {1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 11, 12, 13, 10, 14, 15};
     vector<int> dest = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 0};
-    Solve(dest, src);
+    Solve(dest, src, PrintOptions);
     return 0;
 }
